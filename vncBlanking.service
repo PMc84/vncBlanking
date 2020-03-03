@@ -1,0 +1,11 @@
+[Unit]
+Description=vncBlanking
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/vncBlanking.sh
+
+[Install]
+WantedBy=default.target
