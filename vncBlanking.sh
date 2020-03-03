@@ -24,7 +24,6 @@ MAIN_LOOP () {
 # VNCCONNECTED=$(lsof -i tcp$VNCPORT | grep vnc | grep -c ESTABLISHED)
 # Believe the below should give us what we want - count is 0 when VNCing out as looking at only the source port.
 VNCCONNECTED=$(ss -H -t4 state established sport = $VNCPORT | grep -c $VNCPORT)
-echo $VNCCONNECTED
 while :
 do
     if (( $VNCCONNECTED >= "1" )); then
@@ -65,10 +64,10 @@ DISABLE_LOCAL () {
         sleep 0.1
         xrandr --output $i --brightness 0.2
         sleep 0.1
-#        xrandr --output $i --brightness 0
+        xrandr --output $i --brightness 0
     done
-#    xinput disable $MOUSEID
-#    xinput disable $KEYBOARDID
+    xinput disable $MOUSEID
+    xinput disable $KEYBOARDID
     SLEEP_LOOP
 }
 
